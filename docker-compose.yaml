@@ -1,0 +1,19 @@
+services:
+  eureka-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ecommerce-eureka-server:local
+    container_name: ecommerce-eureka-server
+    restart: unless-stopped
+    ports:
+      - "8761:8761"
+    networks:
+      - product-service_default
+      - inventory-service_default
+
+networks:
+  product-service_default:
+    external: true
+  inventory-service_default:
+    external: true
